@@ -2,12 +2,14 @@ package gluon.projects.utilities;
 
 import gluon.projects.myexception.PropertieFileException;
 
+import javax.annotation.processing.Generated;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesGetter {
 
+    @Generated("jacoco exclude")
     private PropertiesGetter() {
         throw new IllegalStateException("Utility class");
     }
