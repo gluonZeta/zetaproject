@@ -1,6 +1,7 @@
 package gluon.projects.apibinance.impl;
 
 import gluon.projects.apibinance.ApiBinanceService;
+import gluon.projects.myexception.ApiBinanceException;
 import gluon.projects.utilities.PropertiesGetter;
 
 import java.io.IOException;
@@ -15,12 +16,6 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
     private Properties properties;
 
     private String apiBinanceUrl;
-
-    private HttpRequest httpRequest;
-
-    private HttpClient httpClient;
-
-    private HttpResponse httpResponse;
 
     private String apiVersion = "/api/v3";
 
@@ -46,21 +41,22 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
 
 
     private String sendSimpleApiRequest(String completeUrl) {
-        this.httpRequest = HttpRequest
+        HttpRequest httpRequest = HttpRequest
                 .newBuilder()
                 .uri(URI.create(completeUrl))
                 .build();
-        this.httpClient = HttpClient.newHttpClient();
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpResponse httpResponse;
 
         try {
-            this.httpResponse = this.httpClient.send(this.httpRequest, HttpResponse.BodyHandlers.ofString());
+            httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new ApiBinanceException(e);
         } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+            Thread.currentThread().interrupt();
+            throw new ApiBinanceException(e);
         }
-
-        return (String) this.httpResponse.body();
+        return (String) httpResponse.body();
     }
 
 
