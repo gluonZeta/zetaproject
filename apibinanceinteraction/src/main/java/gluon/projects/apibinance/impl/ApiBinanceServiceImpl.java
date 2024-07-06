@@ -46,7 +46,7 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
                 .uri(URI.create(completeUrl))
                 .build();
         HttpClient httpClient = HttpClient.newHttpClient();
-        HttpResponse httpResponse;
+        HttpResponse<String> httpResponse;
 
         try {
             httpResponse = httpClient.send(httpRequest, HttpResponse.BodyHandlers.ofString());
@@ -56,7 +56,7 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
             Thread.currentThread().interrupt();
             throw new ApiBinanceException(e);
         }
-        return (String) httpResponse.body();
+        return httpResponse.body();
     }
 
 
