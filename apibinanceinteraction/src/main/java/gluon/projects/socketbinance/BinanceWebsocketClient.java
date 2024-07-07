@@ -2,10 +2,14 @@ package gluon.projects.socketbinance;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URI;
 
 public class BinanceWebsocketClient extends WebSocketClient {
+
+    private static Logger logger = LoggerFactory.getLogger(BinanceWebsocketClient.class);
 
     public BinanceWebsocketClient(URI serverUri) {
         super(serverUri);
@@ -13,17 +17,17 @@ public class BinanceWebsocketClient extends WebSocketClient {
 
     @Override
     public void onOpen(ServerHandshake serverHandshake) {
-        System.out.println("Connected to Binance WebSocket server");
+        logger.info("Connected to Binance WebSocket server");
     }
 
     @Override
     public void onMessage(String s) {
-        System.out.println("Received message: " + s);
+        logger.info("Received message: " + s);
     }
 
     @Override
     public void onClose(int i, String s, boolean b) {
-        System.out.println("Connection closed: " + s);
+        logger.info("Connection closed: " + s);
     }
 
     @Override

@@ -17,7 +17,7 @@ public class BinanceWebsocket {
         this.socketBinanceUrl = this.properties.getProperty("streambinancesocket");
     }
 
-    public void createInteraction() {
+    public void websocketConnect() {
         //String url = this.socketBinanceUrl + "/btcusdt@trade";
         //String url = this.socketBinanceUrl + "/adausdt@aggTrade";
         //String url = this.socketBinanceUrl + "/enausdt@bookTicker";
