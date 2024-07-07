@@ -6,4 +6,6 @@ public interface ApiBinanceService {
 
     public String getExchangeInformations(String symbol);
 
+    public String getExchangeInformations();
+
 }

@@ -39,6 +39,14 @@ public class ApiBinanceServiceImpl implements ApiBinanceService {
         return this.sendSimpleApiRequest(exchangeInformationsUrl.toString());
     }
 
+    @Override
+    public String getExchangeInformations() {
+        StringBuilder exchangeInformationsUrl = new StringBuilder(this.apiBinanceUrl);
+        exchangeInformationsUrl.append(this.apiVersion);
+        exchangeInformationsUrl.append("/exchangeInfo");
+        return this.sendSimpleApiRequest(exchangeInformationsUrl.toString());
+    }
+
 
     private String sendSimpleApiRequest(String completeUrl) {
         HttpRequest httpRequest = HttpRequest
