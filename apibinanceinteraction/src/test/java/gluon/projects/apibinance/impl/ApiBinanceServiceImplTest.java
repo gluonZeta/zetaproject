@@ -31,6 +31,5 @@ class ApiBinanceServiceImplTest {
     @Test
     void getExchangeInformations() {
         assertNotNull(this.apiBinanceService.getExchangeInformations("BTCUSDT"));
-        System.out.println(this.apiBinanceService.getExchangeInformations("BTCUSDT"));
     }
 }

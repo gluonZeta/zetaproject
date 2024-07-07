@@ -1,5 +1,6 @@
 package gluon.projects.socketbinance;
 
+import gluon.projects.myexception.ApiBinanceException;
 import gluon.projects.utilities.PropertiesGetter;
 
 import java.net.URI;
@@ -26,7 +27,7 @@ public class BinanceWebsocket {
             BinanceWebsocketClient binanceWebsocketClient = new BinanceWebsocketClient(new URI(url));
             binanceWebsocketClient.connect();
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e);
+            throw new ApiBinanceException(e);
         }
     }
 

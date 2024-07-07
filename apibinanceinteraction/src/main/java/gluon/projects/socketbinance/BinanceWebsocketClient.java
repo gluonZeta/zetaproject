@@ -17,17 +17,17 @@ public class BinanceWebsocketClient extends WebSocketClient {
 
     @Override
     public void onOpen(ServerHandshake serverHandshake) {
-        logger.info("Connected to Binance WebSocket server");
+        logger.atInfo().log("Connected to Binance WebSocket server");
     }
 
     @Override
     public void onMessage(String s) {
-        logger.info("Received message: " + s);
+        logger.atInfo().log("Received message: " + s);
     }
 
     @Override
     public void onClose(int i, String s, boolean b) {
-        logger.info("Connection closed: " + s);
+        logger.atInfo().log("Connection closed: " + s);
     }
 
     @Override
