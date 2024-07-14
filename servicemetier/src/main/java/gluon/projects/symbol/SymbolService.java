@@ -6,4 +6,6 @@ public interface SymbolService {
 
     public List<String> getSymbolList();
 
+    public String getSymbolInformations(String symbol);
+
 }

@@ -14,10 +14,13 @@ public class SymbolServiceImpl implements SymbolService {
 
     private ApiBinanceService apiBinanceService;
 
+    public SymbolServiceImpl() {
+        this.apiBinanceService = new ApiBinanceServiceImpl();
+    }
+
     @Override
     public List<String> getSymbolList() {
         List<String> symbolList = new ArrayList<>();
-        this.apiBinanceService = new ApiBinanceServiceImpl();
 
         String exchangeInformation = this.apiBinanceService.getExchangeInformations();
         JSONObject jsonObject = new JSONObject(exchangeInformation);
@@ -37,5 +40,10 @@ public class SymbolServiceImpl implements SymbolService {
                 ))
                 .collect(Collectors.toList());
         return symbolList;
+    }
+
+    @Override
+    public String getSymbolInformations(String symbol) {
+        return this.apiBinanceService.getExchangeInformations(symbol);
     }
 }
