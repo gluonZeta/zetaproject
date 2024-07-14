@@ -41,12 +41,8 @@ public class ApiCoingeckoServiceImpl implements ApiCoingeckoService {
             this.apiCoingeckoUrl.append("?vs_currency=usd&order=market_cap_desc&per_page=250&page=").append(page);
             try {
                 jsonArrayResponse.putAll(new JSONArray(this.sendSimpleApiRequest(this.apiCoingeckoUrl.toString())));
-                Thread.sleep(5000);
             } catch (JSONException jsonException) {
                 break;
-            } catch (InterruptedException e) {
-                Thread.currentThread().interrupt();
-                throw new ApiBinanceException(e);
             }
             page++;
         }
