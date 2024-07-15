@@ -13,7 +13,7 @@ public class Main {
 
     public static void main(String[] args) {
         MarketCapFilterService marketCapFilterService = new MarketCapFilterServiceImpl();
-        Map<String, Long> filteredCryptoSymbol = marketCapFilterService.getCapitalisationFilteredCrypto();
+        Map<String, Long> filteredCryptoSymbol = marketCapFilterService.getCapitalisationFilteredCrypto(false);
         for(Map.Entry<String, Long> entry: filteredCryptoSymbol.entrySet()) {
             logger.atInfo().log(entry.getKey() + " -- " + entry.getValue());
         }

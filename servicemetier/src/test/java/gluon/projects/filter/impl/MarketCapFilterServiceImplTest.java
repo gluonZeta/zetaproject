@@ -22,7 +22,7 @@ class MarketCapFilterServiceImplTest {
     @Test
     void getCapitalisationFilteredCrypto() {
         MarketCapFilterService marketCapFilterService = new MarketCapFilterServiceImpl();
-        Map<String, Long> cryptoCapitalisation =  marketCapFilterService.getCapitalisationFilteredCrypto();
+        Map<String, Long> cryptoCapitalisation =  marketCapFilterService.getCapitalisationFilteredCrypto(true);
         assertNotNull(cryptoCapitalisation);
         assertFalse(cryptoCapitalisation.isEmpty());
     }
