@@ -21,7 +21,7 @@ public class ApiCoingeckoServiceImpl implements ApiCoingeckoService {
 
     private StringBuilder apiCoingeckoUrl;
 
-    private static final int MAX_LOOP = 20000;
+    private static final int MAX_LOOP = 500;
 
     public ApiCoingeckoServiceImpl() {
         this.properties = PropertiesGetter.getProperties("application.properties");
@@ -34,14 +34,14 @@ public class ApiCoingeckoServiceImpl implements ApiCoingeckoService {
         int page = 0;
         JSONArray jsonArrayResponse = new JSONArray();
 
-        while(true) {
+        while(page < MAX_LOOP) {
             this.apiCoingeckoUrl.append("?vs_currency=usd&order=market_cap_desc&per_page=250&page=").append(page);
             try {
                 jsonArrayResponse.putAll(new JSONArray(ApiRequest.sendSimpleApiRequest(this.apiCoingeckoUrl.toString())));
             } catch (JSONException jsonException) {
                 break;
             }
-            if(page < MAX_LOOP) page++;
+            page++;
         }
 
         JSONObject jsonObject;
