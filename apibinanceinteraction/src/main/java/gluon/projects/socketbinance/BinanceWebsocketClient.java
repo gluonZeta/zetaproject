@@ -32,6 +32,6 @@ public class BinanceWebsocketClient extends WebSocketClient {
 
     @Override
     public void onError(Exception e) {
-        e.printStackTrace();
+        logger.atInfo().log(e.getMessage());
     }
 }

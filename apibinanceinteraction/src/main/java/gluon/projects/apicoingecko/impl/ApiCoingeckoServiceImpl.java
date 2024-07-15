@@ -26,6 +26,8 @@ public class ApiCoingeckoServiceImpl implements ApiCoingeckoService {
 
     private StringBuilder apiCoingeckoUrl;
 
+    private static final int MAX_LOOP = 20000;
+
     public ApiCoingeckoServiceImpl() {
         this.properties = PropertiesGetter.getProperties("application.properties");
         this.apiCoingeckoUrl = new StringBuilder(this.properties.getProperty("coingeckoUrl"));
@@ -44,6 +46,7 @@ public class ApiCoingeckoServiceImpl implements ApiCoingeckoService {
             } catch (JSONException jsonException) {
                 break;
             }
+            if(page == MAX_LOOP) break;
             page++;
         }
 
