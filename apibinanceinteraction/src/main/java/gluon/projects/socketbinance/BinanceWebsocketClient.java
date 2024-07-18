@@ -11,8 +11,11 @@ public class BinanceWebsocketClient extends WebSocketClient {
 
     private static Logger logger = LoggerFactory.getLogger(BinanceWebsocketClient.class);
 
-    public BinanceWebsocketClient(URI serverUri) {
+    private String cryptoSymbol;
+
+    public BinanceWebsocketClient(URI serverUri, String cryptoToAnalyse) {
         super(serverUri);
+        this.cryptoSymbol = cryptoToAnalyse.toUpperCase();
     }
 
     @Override
@@ -22,7 +25,7 @@ public class BinanceWebsocketClient extends WebSocketClient {
 
     @Override
     public void onMessage(String s) {
-        logger.atInfo().log("Received message: " + s);
+        logger.atInfo().log("Received Data: " + s);
     }
 
     @Override
